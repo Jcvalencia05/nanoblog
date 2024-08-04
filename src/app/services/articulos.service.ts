@@ -6,20 +6,23 @@ import { Articulo } from '../interfaces/articulo.interface';
     providedIn: 'root',
 })
 export class ArticulosService {
-    private baseURL = 'https://jsonplaceholder.typicode.com/posts';
+    private baseURL = 'https://jsonplaceholder.typicode.com/posts'
 
     options = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-    }),
-    };
-    constructor(private http: HttpClient) {}
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+        })
+    }
+    constructor(private readonly http: HttpClient) {}
 
     getPosts() {
     return this.http.get<Articulo[]>(this.baseURL, this.options);
     }
 
     getPost(id:number){
-        return this.http.get<Articulo[]>(`${this.baseURL}/${id}`,this.options)
+        return this.http.get<Articulo>(`${this.baseURL}/${id}`,this.options)
+    }
+    savePost(data:Articulo){
+        return this.http.post(`${this.baseURL}`,data);
     }
 }

@@ -27,8 +27,8 @@ export class ListaArticulosComponent implements OnInit{
   constructor(
     private readonly articulosService: ArticulosService,
     public dialog: MatDialog
-    ){
-  }
+    ){}
+    
   ngOnInit(): void {
     this.articulosService.getPosts().subscribe(articulos => {
       this.articulos = articulos
